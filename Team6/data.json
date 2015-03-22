@@ -1,0 +1,20 @@
+{
+"listQ" : [
+ {
+    "question" : "how to use Nodejs?",
+    "listA" : [
+    	{"answer": "answer 1"},
+    	{"answer": "answer 2"},
+    	{"answer": "answer 3"}
+    ]
+ },
+ {
+    "question" : "question 2",
+    "listA" : [
+    	{"aswser": "answer 1"},
+    	{"aswser": "answer 2"},
+    	{"aswser": "answer 3"}
+    ]
+ }
+ ]
+}  
