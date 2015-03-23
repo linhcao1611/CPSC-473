@@ -1,6 +1,6 @@
 <article>
-	<% 	var i; var j; for (i = 0; i<appdata.length; i++){ %>
-			<li><a href="/addA" name="newA"> <%= appdata[i][2] %> </a> 
+	<% 	var i; for (i = 0; i<appdata.length; i++){ %>
+			<li><a href="/answer" name="qid" value="<%=appdata[i][0]%>" method="get"> <%= appdata[i][2] %> </a> 
 			
 			</li>
 				

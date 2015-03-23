@@ -84,6 +84,13 @@ app.post('/addQ', function(req,res){
 
 });
 
+// add a new answer
+app.get('/answer',function(req,res){
+  var qid = req.body.qid;
+  var qindex= returnIndex(qid);
+  res.render('answer',{ title: 'CPSC 473 Project', index: qindex });
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
