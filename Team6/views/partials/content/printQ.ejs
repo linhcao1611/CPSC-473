@@ -1,7 +1,17 @@
 <article>
 	<% 	var i; for (i = 0; i<appdata.length; i++){ %>
 			<li><a href="/answer" name="qid" value="<%=appdata[i][0]%>" method="get"> <%= appdata[i][2] %> </a> 
-			
+			<% if(appdata[i][3].length > 0) { %>
+				<% var j; for(j=0;j<appdata[i][3].length; j++) { %>
+					<p> <%=appdata[i][3][j] %> </p>
+				<% } %>
+			<% } %>
+				<form action="/addA" method="post">
+					<h5>Add a answer</h5>
+					<input name="index" value="<%=i%>" hidden>
+					<input type="text" name="newA">
+					<input type="submit">
+				</form>
 			</li>
 				
 		<% } %>	
