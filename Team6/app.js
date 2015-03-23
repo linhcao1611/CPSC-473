@@ -44,28 +44,18 @@ function returnIndex(inVal){
   }
 }
 
+var timeoutID;
 function checkAndDelete(){
-  setInterval(function(){
+  timeoutID =  setInterval(function(){
     for(var i=0; i<listQ.length;i++){
       console.log(listQ[i]);
       if(listQ[i][1] === 0){
-        listQ = listQ.splice(i,1);
+        listQ.splice(i,1);
       } else {
         listQ[i][1] = listQ[i][1] - 1000;
       }
     }
   },1000);
-}
-
-function deleteQ(index,timeVal,res){
-   setTimeout(function(timeVal){
-    listQ.splice(index,1);},timeVal);
-    
-    //res.redirect('/');
-}
-
-function delete1(index){
-  listQ = listQ.splice(index,1);
 }
 
 function stopFunction(){
@@ -75,31 +65,19 @@ function stopFunction(){
 // add a new question
 app.post('/addQ', function(req,res){
   var newItem = req.body.newQ;
-  var newTime = req.body.Stime*1000;
+  var newTime = req.body.Stime*60000;
   var d = new Date();
   var n = d.getTime().toString();
 
   listQ.push([n, newTime, newItem ]); 
-  //res.redirect('/');
+  res.redirect('/');
   var index = returnIndex(n);
-  //deleteQ(index,newTime,res);
-  //setTimeout(function(newTime){
-  //  listQ.splice(index,1);},newTime);
-  setInterval(function(){
-    for(var k=0; k<listQ.length;k++){
-      console.log(listQ[k]);
-      if(listQ[k][1] === 0){
-        listQ.splice(k,1);
-      } else {
-        listQ[k][1] = listQ[k][1] - 1000;
-      }
-    }
-  },1000);
+  stopFunction();
+  checkAndDelete();
   console.log(listQ.length);
   console.log(n);
   console.log(index);
-  //console.log(listQ[index]);
-  
+
   for(var j=0;j<listQ.length;j++)  {
     console.log(listQ[j]);
   }
@@ -141,3 +119,4 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+//module.exports = checktime;

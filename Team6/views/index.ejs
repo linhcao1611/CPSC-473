@@ -4,18 +4,21 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-	<% include partials/content/question.ejs %>
-	<form action="/addQ" method="post">
+	<% include partials/content/printQ.ejs %>
+		<form action="/addQ" method="post">
 		<h4>Enter a question:</h4>
-		<input type="text" name="newQ">
+		<input type="text" name="newQ" class="form-control" placeholder="Text input">
 		<h4>Enter time:</h4>
-		<input type="number" name="Stime">
-		<input type="submit">
-
+		<select name="Stime">
+			<option value="5">5 minutes</option>
+			<option value="10">10 minutes</option>
+			<option value="15">15 minutes</option>
+			<option value="20">20 minutes</option>
+			<option value="25">25 minutes</option>
+			<option value="30">30 minutes</option>
+		</select>
+		<input type="submit" class="btn btn-primary">
 	</form>
-
-
-	
 	<% include partials/template/footer.ejs %>
     <% include partials/template/default.ejs %>
   </body>
