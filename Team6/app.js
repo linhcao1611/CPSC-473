@@ -61,7 +61,7 @@ function stopFunction(){
 // add a new question
 app.post('/addQ', function(req,res){
   var newItem = req.body.newQ;
-  var newTime = req.body.Stime*10000;
+  var newTime = req.body.Stime*60000;
   var d = new Date();
   var n = d.getTime().toString();
 

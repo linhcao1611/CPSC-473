@@ -2,10 +2,8 @@
 <html>
   <head><% include partials/template/head.ejs %> </head>
   <body>
-    <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-	<% include partials/content/printQ.ejs %>
-		<form action="/addQ" method="post">
+		<form id="submitQ" action="/addQ" method="post">
 		<h4>Enter a question:</h4>
 		<input type="text" name="newQ" class="form-control" placeholder="Text input">
 		<h4>Enter time:</h4>
@@ -19,6 +17,7 @@
 		</select>
 		<input type="submit" class="btn btn-primary">
 	</form>
+	<% include partials/content/printQ.ejs %>
 	<% include partials/template/footer.ejs %>
     <% include partials/template/default.ejs %>
   </body>

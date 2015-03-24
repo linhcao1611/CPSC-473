@@ -1,9 +1,13 @@
-<article>
+<div>
 	<% 	var i; for (i = 0; i<appdata.length; i++){ %>
-			<li><a href="/answer" name="qid" value="<%=appdata[i][0]%>" method="get"> <%= appdata[i][2] %> </a> 
-			<% if(appdata[i][3].length > 0) { %>
+			<div><dl>
+					<dt> <%= appdata[i][2] %> </dt>
+					<dd>There is <%= appdata[i][3].length %> answers for this question </dd>
+
+				</dl> 
+			<% if(appdata[i][3].length != 0) { %>
 				<% var j; for(j=0;j<appdata[i][3].length; j++) { %>
-					<p> <%=appdata[i][3][j] %> </p>
+					<h5> <%=appdata[i][3][j] %> </h5>
 				<% } %>
 			<% } %>
 				<form action="/addA" method="post">
@@ -12,10 +16,10 @@
 					<input type="text" name="newA">
 					<input type="submit">
 				</form>
-			</li>
+			</div>
 				
 		<% } %>	
-</article>
+</div>
 
 
 
