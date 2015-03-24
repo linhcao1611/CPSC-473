@@ -43,7 +43,6 @@ var timeoutID;
 function checkAndDelete(){
   timeoutID =  setInterval(function(req,res){
     for(var i=0; i<listQ.length;i++){
-      
       if(listQ[i][1] === 0){
         listQ.splice(i,1);
         //res.redirect('/');
@@ -79,23 +78,13 @@ app.post('/addQ', function(req,res){
 });
 
 // add a new answer
-//app.get('/answer',function(req,res){
-//  var qid = req.body.qid;
-//  var qindex= returnIndex(qid);
-//  res.render('answer',{ title: qindex, index:qindex });
-//  console.log(qid);
-//});
-
-
 app.post('/addA', function(req,res){
   var newItem= req.body.newA;
   var index = req.body.index;
   listQ[index][3].push(newItem);
   res.redirect('/');
-  console.log(listQ[index][3][0]);
   console.log(newItem);
   console.log(index);
-
 });
 
 // catch 404 and forward to error handler

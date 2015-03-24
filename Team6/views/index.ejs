@@ -3,8 +3,8 @@
   <head><% include partials/template/head.ejs %> </head>
   <body>
     <p>Welcome to <%= title %></p>
-		<form id="submitQ" action="/addQ" method="post">
-		<h4>Enter a question:</h4>
+		<form id="addQuestion" action="/addQ" method="post">
+		<h4>Ask a question:</h4>
 		<input type="text" name="newQ" class="form-control" placeholder="Text input">
 		<h4>Enter time:</h4>
 		<select name="Stime">

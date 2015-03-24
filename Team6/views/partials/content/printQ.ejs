@@ -1,21 +1,24 @@
-<div>
+<div class="listQuestion">
 	<% 	var i; for (i = 0; i<appdata.length; i++){ %>
-			<div><dl>
-					<dt> <%= appdata[i][2] %> </dt>
-					<dd>There is <%= appdata[i][3].length %> answers for this question </dd>
-
-				</dl> 
-			<% if(appdata[i][3].length != 0) { %>
-				<% var j; for(j=0;j<appdata[i][3].length; j++) { %>
-					<h5> <%=appdata[i][3][j] %> </h5>
-				<% } %>
-			<% } %>
-				<form action="/addA" method="post">
-					<h5>Add a answer</h5>
-					<input name="index" value="<%=i%>" hidden>
-					<input type="text" name="newA">
-					<input type="submit">
-				</form>
+			<div class="question">
+					<button type="button" class="btn btn-link">
+						<%= appdata[i][2] %> - 
+						<%= appdata[i][3].length %> answers
+					</button>					
+								 				
+					<div class="answer">
+					<% if(appdata[i][3].length != 0) { %>
+						<% var j; for(j=0;j<appdata[i][3].length; j++) { %>
+							<li> <%=appdata[i][3][j] %> </li>
+						<% } %>
+					<% } %>
+					<form class="addAnswer" action="/addA" method="post">
+						<h5>Add a answer</h5>
+						<input name="index" value="<%=i%>" hidden>
+						<input type="text" name="newA">
+						<input type="submit">
+					</form>
+					</div>
 			</div>
 				
 		<% } %>	
