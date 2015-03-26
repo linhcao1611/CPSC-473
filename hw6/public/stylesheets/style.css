@@ -1,0 +1,35 @@
+body {
+	padding: 2em;
+	width: 60%;
+	margin: auto;
+	border: 2px solid #eee;
+	border: 2px solid rgba(0, 0, 0, 0.05);
+	-webkit-border-radius: 1em;
+	-moz-border-radius: 1em;
+	border-radius: 1em;
+	margin-top: 2em;
+	margin-bottom: 1em;
+}
+
+a {
+  color: #00B7FF;
+}
+
+header{
+	padding-bottom: 4em;
+}
+
+footer{
+	padding-top: 2em;
+	text-align: center;
+}
+
+.input{
+	margin-left: 1em;
+	float: left;
+}
+
+.result{
+	margin-top: 5em;
+	margin-left: 1em;
+}

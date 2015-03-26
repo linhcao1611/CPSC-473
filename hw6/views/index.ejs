@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <% include template/head.ejs %>
+  <body>
+    <h2>Pick one:</h2>
+    <div id="option">
+      <form class="input" action="/play/rock" method="post">
+        <input id="rock" class="btn btn-primary" type="submit" value="Rock">
+      </form>
+      <form class="input" action="/play/paper" method="post">
+        <input class="btn btn-primary" type="submit" value="Paper">
+      </form>
+      <form class="input" action="/play/scissors" method="post">
+        <input class="btn btn-primary" type="submit" value="Scissors">
+      </form>
+      <form class="input" action="/play/lizard" method="post">
+        <input class="btn btn-primary" type="submit" value="Lizard">
+      </form>
+      <form class="input" action="/play/spock" method="post">
+        <input class="btn btn-primary" type="submit" value="Spock">
+      </form>
+    </div>
+    
+    
+  <% include result.ejs %>
+  <% include template/footer.ejs %>
+  <% include template/defaultjs.ejs %>
+  </body>
+</html>
