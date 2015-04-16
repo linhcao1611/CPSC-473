@@ -37,15 +37,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
 
-app.get('/url', function(req,res){
-  UrlModel.find({}, function(err, result){
-    res.json(result);
-  });
-});
+
 
 function topTen(){
-  return UrlModel.find({},{_id:0}).sort({clicks:1}).limit(10);
+  UrlModel.find({}, function(err, result){
+    console.log(">>>> "+result);
+    return result;
+  });
+
 }
+
+
 
 app.post('/', function(req,res){
   var inputUrl, sUrl;
@@ -83,6 +85,8 @@ app.post('/', function(req,res){
       }
     });
   } else{ // user enter a long url
+    var listUrl;
+    var topTenUrl= [];
     //check if that url is already in the database or not
     UrlModel.findOne({longUrl: inputUrl}, function(err, result){
       if(err){
@@ -97,13 +101,20 @@ app.post('/', function(req,res){
           longUrl: inputUrl,
           clicks: 0
         });
+
+        
         
         // save the url into database
         temp.save(function(err){
-          if(err){
+          if(err !== null){
             console.log(err);
           } else {
-            res.render('output',{shortUrl: result.shortUrl, longUrl: result.longUrl, list: topTen()})
+            UrlModel.find({},{shortUrl:1, _id:0}, function(err, result){
+            console.log(result.shortUrl);
+            listUrl=result;
+            });
+
+            res.render('output',{shortUrl: sUrl, longUrl: inputUrl, list: {shortUrl: topTenUrl}})
             console.log("created");
           }
         });
@@ -111,9 +122,21 @@ app.post('/', function(req,res){
       } else{ // this long url is already in the database
         console.log("this url is already in the database");
         // display it shortener url
-        var listUrl = topTen();
-        console.log(listUrl);
-        res.render('output',{shortUrl: result.shortUrl, longUrl: result.longUrl, list: listUrl})
+        UrlModel.find({}, function(err, list){
+          var index;
+          for(index =0; index < list.length; index++){
+            //console.log(list[index].shortUrl);
+            //topTenUrl[index] = list[index].shortUrl;
+            topTenUrl.push(list[index].shortUrl);
+            console.log("top ten inside call back function");
+            console.log(topTenUrl);
+          }
+          res.render('output',{shortUrl: result.shortUrl, longUrl: result.longUrl, list: topTenUrl });
+        }).sort({clicks:-1}).limit(10);
+        //res.json(listUrl);
+        //console.log("top ten urls outside are:");
+        //console.log(topTenUrl);
+        console.log("end");
 
       } 
 
@@ -121,6 +144,43 @@ app.post('/', function(req,res){
     
 
   }
+
+});
+
+
+app.get('/:url', function(req,res){
+    var inputUrl;
+    inputUrl="localhost:3000/"+req.params.url;
+
+    UrlModel.findOne({shortUrl: inputUrl}, function(err, result){
+      if(err){
+        console.log(err);
+      } 
+      if(result === null){ // not thing found
+        console.log("invalid short url")
+      } else{
+        console.log("already in the database");
+        // increase clicks
+        result.clicks += 1;
+        console.log(result);
+        result.save(function(err){ 
+          if(err){
+            console.log(err);
+          }else{
+            console.log("updated clicks");
+          }
+        })
+        // deal with http:// and https://
+        if(result.longUrl.substring(0,7) === "http://"){
+          res.redirect("http://"+result.longUrl.substring(7));
+          //console.log(result.longUrl.substring(7));
+        } else if(result.longUrl.substring(0,8) === "https://"){
+          res.redirect("http://"+result.longUrl.substring(8));
+        } else{
+          res.redirect("http://"+result.longUrl);
+        }
+      }
+    });
 
 });
 

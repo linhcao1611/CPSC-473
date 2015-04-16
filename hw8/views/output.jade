@@ -8,14 +8,15 @@ block content
 
 	div 
 		h5 Shortener Url: 
-			//a(href=shortUrl type="submit")= shortUrl 
-			a=shortUrl
+			a(href="http://"+shortUrl )= shortUrl 
+			//a=shortUrl
 		h5 Original Url: 
 			a(href="http://"+ longUrl)= longUrl
 
 	div
 		h4 Top ten 
-			ul
-				for elt in list
-					li=elt
+		for elt in list
+			p= elt
+			
+		
 				
