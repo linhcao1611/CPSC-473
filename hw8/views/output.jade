@@ -1,9 +1,9 @@
 extends layout
 
 block content
-	h4 Enter a url:
+	h3 Enter a url:
 	form(action="/", method="post")
-		input(type="text", name="url")
+		input#inputUrl(type="text", name="url")
 		input(type="submit", value="submit")
 
 	div 
@@ -14,7 +14,7 @@ block content
 			a(href="http://"+ longUrl)= longUrl
 
 	div
-		h4 Top ten 
+		h3 Top ten 
 		for elt in list
 			p 
 				a(href="http://"+ elt)= elt
