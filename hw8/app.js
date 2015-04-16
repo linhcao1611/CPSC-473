@@ -39,15 +39,6 @@ app.use('/users', users);
 
 
 
-function topTen(){
-  UrlModel.find({}, function(err, result){
-    console.log(">>>> "+result);
-    return result;
-  });
-
-}
-
-
 
 app.post('/', function(req,res){
   var inputUrl, sUrl;
@@ -114,7 +105,18 @@ app.post('/', function(req,res){
             listUrl=result;
             });
 
-            res.render('output',{shortUrl: sUrl, longUrl: inputUrl, list: {shortUrl: topTenUrl}})
+            UrlModel.find({}, function(err, list){
+              var index;
+              for(index =0; index < list.length; index++){
+                //console.log(list[index].shortUrl);
+                //topTenUrl[index] = list[index].shortUrl;
+                topTenUrl.push(list[index].shortUrl);
+                //console.log("top ten inside call back function");
+                //console.log(topTenUrl);
+              }
+              res.render('output',{shortUrl: sUrl, longUrl: inputUrl, list: topTenUrl });
+            }).sort({clicks:-1}).limit(10);
+            //res.render('output',{shortUrl: sUrl, longUrl: inputUrl, list: {shortUrl: topTenUrl}})
             console.log("created");
           }
         });
@@ -128,15 +130,11 @@ app.post('/', function(req,res){
             //console.log(list[index].shortUrl);
             //topTenUrl[index] = list[index].shortUrl;
             topTenUrl.push(list[index].shortUrl);
-            console.log("top ten inside call back function");
-            console.log(topTenUrl);
+            //console.log("top ten inside call back function");
+            //console.log(topTenUrl);
           }
           res.render('output',{shortUrl: result.shortUrl, longUrl: result.longUrl, list: topTenUrl });
         }).sort({clicks:-1}).limit(10);
-        //res.json(listUrl);
-        //console.log("top ten urls outside are:");
-        //console.log(topTenUrl);
-        console.log("end");
 
       } 
 
