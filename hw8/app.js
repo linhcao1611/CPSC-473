@@ -53,7 +53,7 @@ app.post('/', function(req,res){
         console.log(err);
       } 
       if(result === null){ // not thing found
-        console.log("invalid short url")
+        console.log("invalid short url");
       } else{
         console.log("already in the database");
         result.clicks += 1;
@@ -64,7 +64,7 @@ app.post('/', function(req,res){
           }else{
             console.log("updated clicks");
           }
-        })
+        });
         if(result.longUrl.substring(0,7) === "http://"){
           res.redirect("http://"+result.longUrl.substring(7));
           //console.log(result.longUrl.substring(7));
@@ -155,7 +155,7 @@ app.get('/:url', function(req,res){
         console.log(err);
       } 
       if(result === null){ // not thing found
-        console.log("invalid short url")
+        console.log("invalid short url");
       } else{
         console.log("already in the database");
         // increase clicks
@@ -167,7 +167,7 @@ app.get('/:url', function(req,res){
           }else{
             console.log("updated clicks");
           }
-        })
+        });
         // deal with http:// and https://
         if(result.longUrl.substring(0,7) === "http://"){
           res.redirect("http://"+result.longUrl.substring(7));
