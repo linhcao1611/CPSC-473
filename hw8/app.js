@@ -43,7 +43,7 @@ app.use('/users', users);
 
 
 app.post('/', function(req, res) {
-    var inputUrl, sUrl;
+    var inputUrl;
     var topTenUrl = [];
     inputUrl = req.body.url;
 
@@ -261,3 +261,8 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+// Client-side code
+/* jshint browser: true, jquery: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, strict: true, undef: true, unused: true */
+ 
+// Server-side code
+/* jshint node: true, curly: true, eqeqeq: true, forin: true, immed: true, indent: 4, latedef: true, newcap: true, nonew: true, quotmark: double, strict: true, undef: true, unused: true */
