@@ -32,7 +32,7 @@ io.on('connection', function(socket) { // client connected
 
     socket.on("addToDo", function(content) { // recieve data from client
         socket.broadcast.emit("add", content);
-        console.log(content);
+        console.log(" a ToDo item is added: "content);
     });
 });
 
