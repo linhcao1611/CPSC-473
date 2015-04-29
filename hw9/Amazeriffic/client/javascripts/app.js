@@ -29,6 +29,7 @@ var main = function(toDoObjects) {
 
         }
         $("main .content").append($content);
+        alert("A ToDo item was added");
     });
 
 
