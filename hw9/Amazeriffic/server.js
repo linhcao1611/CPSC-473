@@ -23,7 +23,7 @@ var ToDo = mongoose.model("ToDo", ToDoSchema);
 
 // http.createServer(app).listen(3000);
 
-
+// using socketIO
 io.on('connection', function(socket) { // client connected
     console.log("user connected");
     socket.on("disconnect", function() { // client disconnected

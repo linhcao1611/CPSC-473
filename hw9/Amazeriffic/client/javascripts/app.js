@@ -17,7 +17,6 @@ var main = function(toDoObjects) {
         // update content
         var $content;
         $("main .content").empty();
-        // var temp = $("#.tabs .active").text();
         if ($(".tabs .active").text() === "Newest") {
             tabNew(toDos);
 
