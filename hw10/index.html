@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+  <head>
+    <title>A Simple App</title>
+
+    <link href='style.css' rel='stylesheet' type='text/css'>
+    <script src="angular.min.js"></script>
+    <script src="script.js"></script>
+  </head>
+
+  <body >
+    <header>
+      <h1>Comments</h1>
+      <p>A simple app that allows a user to input comments</p>
+    </header>
+
+    <main ng-app="Comment" ng-controller="add_comment">
+      <section class='comment-input'>
+        <p>Add Your Comment:</p>
+        <input type="text" ng-model="comment_input"><button ng-click="add(comment_input)">+</button>
+      </section>
+
+      <section class='comments' ng-model="comments">
+        <ul ng-repeat="comment in list">
+        <li>{{comment}}</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>this work is released into the public domain</p>
+    </footer>
+
+    
+    <script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+    
+  </body>
+</html>
