@@ -7,6 +7,7 @@ var app = angular.module('Comment',[]);
 			"And this is one more.",
 			"Here is another one!"];
 		$scope.add = function(data){
-			$scope.list.push(data);			
+			$scope.list.push(data);	
+			$scope.comment_input="";
 		}
 	});
